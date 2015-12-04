@@ -16,14 +16,15 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import authenticate, login, logout
+from . import views
 
 urlpatterns = [
-    url(r'^$', populate_home_page),
-    url(r'^course/([0-9]+)$', populate_long_offer),
-    url(r'^register/$', get_new_user),
-    url(r'^thanks/$', populate_user_created),
-    url(r'^login/$', populate_login),
-    url(r'^logout/$', populate_logout),
-    url(r'^static/(.*)', return_static_file),
+    url(r'^$', views.populate_home_page),
+    url(r'^club/([0-9]+)$', views.populate_long_club),
+    url(r'^register/$', views.get_new_user),
+    url(r'^thanks/$', views.populate_user_created),
+    url(r'^login/$', views.populate_login),
+    url(r'^logout/$', views.populate_logout),
+    url(r'^static/(.*)', views.return_static_file),
     url(r'^admin/', include(admin.site.urls)),
 ]

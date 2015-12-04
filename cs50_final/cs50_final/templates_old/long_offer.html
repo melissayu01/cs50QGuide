@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %} Offer {% endblock %}
+
+{% block navigation %}
+	<li><a href="/">Home.</a></li>
+	<li><a href="/offer/">Offer Food.</a></li>
+	<li class="current"><a href="/browse/">Browse Food.</a></li>
+	<li><a href="/logout/">Log out.</a></li>
+{% endblock %}
+
+{% block page_title %}{{ offer.user.username }} wants to share a meal with you{% endblock %}
+
+{% block content %}
+<section id="services">
+   	<div class="row section-head">
+   		<div class="twelve columns">
+	         <h1>Your host: {{ offer.user.username }}<span>.</span></h1>
+	         <hr>
+         </div>
+      </div>
+      <div class="row">
+      	<div class="twelve columns">
+	      	<div class="service-list bgrid-third s-bgrid-half mob-bgrid-whole">
+	      		<div class="bgrid">
+	               	<h3>What's on the menu:</h3>
+	               	<div class="service-content">	                  
+		               	<p>{{ offer.description }}</p> 
+	               	</div>      
+	            </div> <!-- /bgrid -->
+
+				<div class="bgrid">
+	               	<h3>When?</h3>                  
+	               	<div class="service-content">	                  
+		               	<p>{{ offer.offer_datetime|date:'b j, Y: P'}}</p> 
+	              	</div>                                 
+	            </div> <!-- /bgrid -->
+	            
+	            <div class="bgrid">
+	               	<h3>When?</h3>                  
+	               	<div class="service-content">	                  
+		               	<p>{{ offer.address }}</p> 
+	              	</div>                                 
+	            </div> <!-- /bgrid -->
+
+			   	<div class="bgrid">
+	               	<h3>Price:</h3>
+	               	<div class="service-content">		                  
+		               	<p>${{ offer.price }}</p> 
+	               	</div>                               
+	            </div> <!-- /bgrid -->
+	      	</div> <!-- /service-list -->
+	      </div> <!-- /twelve -->
+      </div> <!-- /row -->      
+   </section> <!-- /services --> 
+{% endblock %}  

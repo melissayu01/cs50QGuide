@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %} Home {% endblock %}
+
+<!-- Hero
+=================================================== -->
+{% block header %}
+	<section id="hero">	
+   	  
+		<div class="row hero-content">
+
+			<div class="twelve columns flex-container">
+
+			   <div id="hero-slider" class="flexslider">
+
+				   	<div class="flex-caption">
+						<h1>SHARE A MEAL.</h1>	
+						<h2>Enjoy a homecooked meal with a local host.</h2>
+						<p><a class="button stroke smoothscroll" href="/#portfolio">How It Works</a></p>																   
+            </div>						
+					  
+			   	</div> <!-- .flexslider -->				   
+
+      	</div> <!-- .flex-container -->      
+
+		</div> <!-- .hero-content -->	   
+
+    {% block search %}
+        {% include "search.html" %}
+    {% endblock %}
+    </section> <!-- #hero -->
+{% endblock %}
+
+<!-- Services
+================================================== -->
+{% block content %}
+
+   <section id="portfolio">
+
+      <div class="row section-head">
+
+      	<div class="twelve columns">
+
+	         <h1>Sharing meals made easy<span>.</span></h1>
+
+	         <hr />
+
+	         <p>Francisco should write this.
+	         </p>
+
+	      </div>
+
+      </div>
+
+      <div class="row items">
+
+      	<div class="twelve columns">
+
+            <div id="portfolio-wrapper" class="service-list bgrid-third s-bgrid-half mob-bgrid-whole">
+
+          	    <div class="bgrid item">
+                  	<div class="item-wrap">
+                    <a href="/register/">
+                        <img src="{% static 'foodoffers/images/services1.jpg' %}" alt="Create An Account">
+                        <div class="overlay"></div>                       
+                        <div class="portfolio-item-meta">
+                            <h5>1. Create An Account</h5>
+                        </div>                         
+                    </a>
+                  	</div>
+                </div> <!-- /item -->
+
+               	<div class="bgrid item">
+                  	<div class="item-wrap">
+                    <a href="/browse/">
+                        <img src="{% static 'foodoffers/images/services2.jpg' %}" alt="Browse Food">
+                        <div class="overlay"></div>  
+                        <div class="portfolio-item-meta">
+                            <h5>2. Browse Food Offers</h5>
+                        </div>
+                    </a>
+                  	</div>
+                </div> <!-- /item -->
+
+                <div class="bgrid item">
+                  	<div class="item-wrap">
+                    <a href="/offer/">
+                        <img src="{% static 'foodoffers/images/services3.jpg' %}" alt="Share A Meal">
+                        <div class="overlay"></div>  
+                        <div class="portfolio-item-meta">
+                            <h5>3. Share A Meal.</h5>
+                        </div>
+                    </a>
+                  	</div>
+          		  </div> <!-- /item -->
+
+            </div> <!-- /portfolio-wrapper -->
+
+         </div> <!-- /twelve -->
+
+      </div>  <!-- /row -->
+      
+   </section> <!-- /Portfolio --> 
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base_account.html" %}
+
+{% block title %} Log In {% endblock %}
+
+{% block navigation %}
+	<li><a href="/">Home.</a></li>
+	<li><a href="/register/">Sign Up.</a></li>             
+	<li class="current"><a class="current" href="/login/">Log In.</a></li>
+{% endblock %}
+
+{% block section %}login{% endblock %}
+
+{% block page_title %}Log In{% endblock %}
+
+{% block rec %} 
+	Don't have an account yet? Click <a href="/register/">here</a> to register!
+{% endblock %}
+
+{% block form %}
+	<form name="LogIn" id="LogIn" method="post" action="/login/">
+	    <fieldset>
+	        {% csrf_token %}
+	        {% for field in form %}
+	        <div class="row">
+	            <div class="twelve columns mob-whole">
+	                <div class="field {% if field.errors %} field_error {% endif %}">
+	                	{{ field }} 
+	              	</div>
+	            </div>
+	        </div>
+	        {% endfor %}
+	        
+	        <div>
+	            <button class="submit full-width">Log In</button>
+	      	</div>
+	    </fieldset>
+	</form><!-- LogIn Form -->
+{% endblock %}

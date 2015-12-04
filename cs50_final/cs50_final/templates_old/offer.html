@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %} Search {% endblock %}
+
+{% block navigation %}
+	<li><a href="/">Home.</a></li>
+	<li class="current"><a href="/offer/">Offer Food.</a></li>
+	<li><a href="/browse/">Browse Food.</a></li>
+	<li><a href="/logout/">Log out.</a></li>
+{% endblock %}
+
+{% block page_title %}Browse Offers{% endblock %}
+
+{% block content %}
+{% include "search.html" %}
+
+<section id="search">
+	<div class="row">
+		<div class="tab-whole nine columns">
+			{% for offer in offer_list %}
+				<a href="/browse/{{forloop.counter}}">
+					<div class="alert-box notice hideit">
+						<p>{% include "short_offer.html" %}</p>
+					</div><!-- /notice -->
+				</a>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endblock %}
