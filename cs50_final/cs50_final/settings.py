@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'search',
-    'star_ratings'
 )
 
 MIDDLEWARE_CLASSES = (
