@@ -17,7 +17,7 @@ def populate_home_page(request):
 			name = form.cleaned_data['name']
 			abbreviation = form.cleaned_data['abbreviation']
 			genre = form.cleaned_data['genre']
-			matches = Club.objects.filter(Q(name__icontains=name) | Q(abbreviation__icontains=abbreviation)) # add other searches
+			matches = Club.objects.filter(Q(name__icontains=name) | Q(abbreviation__icontains=abbreviation))
 			return render(request, 'index.html', {'form': form, 'club_list': matches})
 	else:
 		form = Search()

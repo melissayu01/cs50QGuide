@@ -36,20 +36,20 @@ class LogIn(forms.Form):
         widget=forms.TextInput(attrs={'placeholder': 'Username'}))
     password = forms.CharField(max_length=32, widget=(forms.PasswordInput(render_value=False, attrs={'placeholder': 'Password'})))
 
-class Search(forms.ModelForm):
-    class Meta:
-        model = Club
-        fields = ['name', 'abbreviation']
-    # name = forms.CharField(label='Club Name', max_length=30, 
-    #     widget=forms.TextInput(attrs={'placeholder': 'Club Name'}))
-    # abbreviation = forms.CharField(required=False, label='Club Abbreviation', max_length=10, 
-    #     widget=forms.TextInput(attrs={'placeholder': 'Club Abbreviation'}))
-    genre = forms.ChoiceField(label='Club Genre', choices=Genre.CLUB_CATEGORIES)
+class Search(forms.Form):
+    # class Meta:
+    #     model = Club
+    #     fields = ['name', 'abbreviation']
+    name = forms.CharField(required=False, label='Club Name', max_length=30, 
+        widget=forms.TextInput(attrs={'placeholder': 'Club Name'}))
+    abbreviation = forms.CharField(required=False, label='Club Abbreviation', max_length=10, 
+        widget=forms.TextInput(attrs={'placeholder': 'Club Abbreviation'}))
+    genre = forms.ChoiceField(required=False, label='Club Genre', choices=Genre.CLUB_CATEGORIES)
 
-class Rate(forms.ModelForm):
-    class Meta:
-        model = Review
-        fields = ['rating', 'review']
+class Rate(forms.Form):
+    # class Meta:
+    #     model = Club
+    #     fields = ['name', 'abbreviation']
     review = forms.CharField(label='Review', max_length=2000, 
         widget=forms.TextInput(attrs={'placeholder': 'Type comments here.'}))
     rating = forms.ChoiceField(label="Club Rating", choices=(1, 2, 3, 4, 5))
