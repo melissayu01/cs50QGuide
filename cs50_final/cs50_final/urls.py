@@ -18,7 +18,13 @@ from django.contrib import admin
 from django.contrib.auth import authenticate, login, logout
 
 urlpatterns = [
-    # url(r'^accounts/login/$',  login),
-    # url(r'^accounts/logout/$', logout),
+    url(r'^$', populate_home_page),
+    url(r'^browse/$', populate_browse),
+    url(r'^browse/([0-9]+)$', populate_long_offer),
+    url(r'^register/$', get_new_user),
+    url(r'^thanks/$', populate_user_created),
+    url(r'^login/$', populate_login),
+    url(r'^logout/$', populate_logout),
+    url(r'^static/(.*)', return_static_file),
     url(r'^admin/', include(admin.site.urls)),
 ]
