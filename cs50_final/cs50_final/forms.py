@@ -1,10 +1,8 @@
 from django import forms
-import localflavor.us.forms as lfforms
-from foodoffers.models import *
+from cs50_final.models import *
 from django.core.exceptions import ValidationError
 
 class NewUser(forms.Form):
-    
     first_name = forms.CharField(label='First Name', max_length=30,
         widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
     last_name = forms.CharField(label='Last Name', max_length=30,
@@ -15,8 +13,6 @@ class NewUser(forms.Form):
         widget=forms.TextInput(attrs={'placeholder': 'Email'}))
     password = forms.CharField(max_length=32, widget=forms.PasswordInput(render_value=False, attrs={'placeholder': 'Password'}))
     confirm = forms.CharField(max_length=32, widget=forms.PasswordInput(render_value=False, attrs={'placeholder': 'Confirm'}))
-    zip_code = lfforms.USZipCodeField(widget=forms.TextInput(attrs={'placeholder': 'Zip Code'}))
-    prof_pic = forms.ImageField(max_length=300)
     
 #    def clean_username(self):
 #        if len(User.objects.filter(username=self.cleaned_data.get('username', ''))) == 0:
@@ -39,15 +35,28 @@ class LogIn(forms.Form):
         widget=forms.TextInput(attrs={'placeholder': 'Username'}))
     password = forms.CharField(max_length=32, widget=(forms.PasswordInput(render_value=False, attrs={'placeholder': 'Password'})))
 
-class Offers(forms.Form):
-    address = forms.CharField(label='Enter the address at which the food will be served',
-                            widget = forms.Textarea)
-    description = forms.CharField(label='What type of food are you offering? Be as descriptive as possible!',
-                            widget = forms.Textarea)  
+class Search(forms.Form):
+    name = forms.CharField(label='Club Name', max_length=30, 
+        widget=forms.TextInput(attrs={'placeholder': 'Club Name'}))
+    abbreviation = forms.CharField(label='Club Abbreviation', max_length=10, 
+        widget=forms.TextInput(attrs={'placeholder': 'Club Abbreviation'}))
+    genre = forms.ChoiceField(label='Club Genre', choices=Genre.CLUB_CATEGORIES)
+
+class Rate(forms.Form):
+    review = forms.TextField(label='Review', max_length=2000, 
+        widget=forms.TextInput(attrs={'placeholder': 'Type comments here.'}))
+    rating = forms.ChoiceField(label="Club Rating", choices=(1, 2, 3, 4, 5))
+
+
+# class Offers(forms.Form):
+#     address = forms.CharField(label='Enter the address at which the food will be served',
+#                             widget = forms.Textarea)
+#     description = forms.CharField(label='What type of food are you offering? Be as descriptive as possible!',
+#                             widget = forms.Textarea)  
                             
-    # make sure to default this to a logo of a plate                  
-    picture = forms.ImageField()
+#     # make sure to default this to a logo of a plate                  
+#     picture = forms.ImageField()
     
-    price = forms.DecimalField(min_value = 0, max_value = 999.99, max_digits=5, decimal_places=2)
-    max_people = forms.IntegerField(min_value = 1, max_value = 100)
-    offer_datetime = forms.DateTimeField()
+#     price = forms.DecimalField(min_value = 0, max_value = 999.99, max_digits=5, decimal_places=2)
+#     max_people = forms.IntegerField(min_value = 1, max_value = 100)
+#     offer_datetime = forms.DateTimeField()
