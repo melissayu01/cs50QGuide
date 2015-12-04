@@ -6,20 +6,34 @@ from django.contrib.auth import authenticate, login, logout
 
 from forms import *
 
-if not request.user.is_authenticated():
-    return HttpResponseRedirect('/register/')
+# if not request.user.is_authenticated():
+#     return HttpResponseRedirect('/register/')
 
 def populate_home_page(request):
-    return render(request, 'index.html', {'offer_list': FoodOffer.objects.all()})
+    if request.method == 'POST':
+        form = Search(request.POST)
+        if form.is_valid():
+            try:
+                name = form.cleaned_data['name']
+                abbreviation = form.cleaned_data['abbreviation']
+                genre = form.cleaned_data['genre']
+                matches = Club.objects.filter(name__icontains=name) # add other searches
+            except:
+                raise Http404("Club " + str(name) + " does not exist.")
+            render(request, 'index.html', {'form': form, 'club_list': matches})
+    else:
+        form = Search()
+    
+    return render(request, 'index.html', {'form': form, 'club_list': Search.objects.all()})
 
-def populate_long_offer(request, offer_id):
-    offer_id = int(offer_id)
+def populate_long_club(request, club_id):
+    club_id = int(club_id)
     try:
-        offer = FoodOffer.objects.get(pk=offer_id)
+        club = Club.objects.get(pk=club_id)
     except:
-        raise Http404("Offer " + str(offer_id) + " does not exist.")
+        raise Http404("Club " + str(club_id) + " does not exist.")
         
-    return render(request, 'long_offer.html', {'offer': offer})
+    return render(request, 'long_club.html', {'club': club})
     
 def populate_logout(request):
 	logout(request)
@@ -50,14 +64,12 @@ def populate_login(request):
     if request.method == 'POST':
         form = LogIn(request.POST)
         if form.is_valid():
-            print request.POST['username']
-            print request.POST.get('password')
             user = authenticate(username=request.POST['username'],
                                 password=request.POST['password'])
             if user is not None:
                 if user.is_active:
                     login(request,user)
-                    return HttpResponseRedirect('/browse/')
+                    return HttpResponseRedirect('/')
                 else:
                     return HttpResponseRedirect('/login/')
             else:
