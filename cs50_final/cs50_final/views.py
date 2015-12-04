@@ -10,14 +10,13 @@ from forms import *
 def populate_home_page(request):
 	# if not request.user.is_authenticated():
 	# 	return HttpResponseRedirect('/register/')
-
 	if request.method == 'POST':
 		form = Search(request.POST)
 		if form.is_valid():
 			name = form.cleaned_data['name']
 			abbreviation = form.cleaned_data['abbreviation']
 			genre = form.cleaned_data['genre']
-			matches = Club.objects.filter(Q(name__icontains=name) | Q(abbreviation__icontains=abbreviation))
+			matches = Club.objects.filter( Q(name__icontains=name) | Q(abbreviation__icontains=abbreviation) )
 			return render(request, 'index.html', {'form': form, 'club_list': matches})
 	else:
 		form = Search()
@@ -28,10 +27,21 @@ def populate_long_club(request, club_id):
 	club_id = int(club_id)
 	try:
 		club = Club.objects.get(pk=club_id)
+		reviews = Review.objects.filter(name_id=club_id)
+
+		if request.method == 'POST':
+			form = Rate(request.POST)
+			if form.is_valid():
+				r = Review(review = form.cleaned_data['review'],
+					rating = form.cleaned_data['rating'],)
+				r.save()
+				return render(request, 'long_club.html', {'club': club, 'reviews': reviews, 'form': form})
+		else:
+			form = Rate()
 	except:
 		raise Http404("Club " + str(club_id) + " does not exist.")
 		
-	return render(request, 'long_club.html', {'club': club})
+	return render(request, 'long_club.html', {'club': club, 'reviews': reviews, 'form': form})
 	
 def populate_logout(request):
 	logout(request)
