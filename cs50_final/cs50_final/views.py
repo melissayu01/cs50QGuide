@@ -4,7 +4,7 @@ from search.models import *
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-
+from django.db.models import Q
 from forms import *
 
 def populate_home_page(request):
@@ -14,14 +14,11 @@ def populate_home_page(request):
 	if request.method == 'POST':
 		form = Search(request.POST)
 		if form.is_valid():
-			try:
-				name = form.cleaned_data['name']
-				abbreviation = form.cleaned_data['abbreviation']
-				genre = form.cleaned_data['genre']
-				matches = Club.objects.filter(name__icontains=name) # add other searches
-			except:
-				raise Http404("Club " + str(name) + " does not exist.")
-			render(request, 'index.html', {'form': form, 'club_list': matches})
+			name = form.cleaned_data['name']
+			abbreviation = form.cleaned_data['abbreviation']
+			genre = form.cleaned_data['genre']
+			matches = Club.objects.filter(Q(name__icontains=name) | Q(abbreviation__icontains=abbreviation)) # add other searches
+			return render(request, 'index.html', {'form': form, 'club_list': matches})
 	else:
 		form = Search()
 	
@@ -47,12 +44,12 @@ def get_new_user(request):
 		form = NewUser(request.POST, request.FILES)
 		# check whether it's valid:
 		if form.is_valid() and form.cleaned_data['confirm'] == form.cleaned_data['password']:
-			# u = User(username = form.cleaned_data['username'],
-			# 		first_name = form.cleaned_data['first_name'],
-			# 		last_name = form.cleaned_data['last_name'],
-			# 		email = form.cleaned_data['email'],
-			# 		password = make_password(form.cleaned_data['password']),
-			# u.save()
+			u = User(username = form.cleaned_data['username'],
+					first_name = form.cleaned_data['first_name'],
+					last_name = form.cleaned_data['last_name'],
+					email = form.cleaned_data['email'],
+					password = make_password(form.cleaned_data['password']))
+			u.save()
 			return HttpResponseRedirect('/thanks/')
 
 	# if a GET (or any other method) we'll create a blank form

@@ -27,7 +27,7 @@ class Genre(models.Model):
 		return "%s [%s]" % (self.category, self.get_category_display())
 
 class Club(models.Model):
-	name = models.CharField(max_length=30)
+	name = models.CharField(max_length=30, blank=True)
 	abbreviation = models.CharField(max_length=10, blank=True)
 	genre = models.ManyToManyField(Genre)
 	description = models.TextField(max_length=2000)
