@@ -11,9 +11,9 @@
 <p> 
 Club name: {{ club.name }} ({{ club.abbreviation }}) <br>
 
-Genre: ${{ club.genre }} <br>
+Genre: {{ club.genre }} <br>
 
-Rating: {{ club.rating }} <br>
+Rating: {{ club.overall_rating }} <br>
 
 Description: {{ club.description }} <br>
 
@@ -27,7 +27,12 @@ Description: {{ club.description }} <br>
 </p>
 
 <p>
-{{ form }} <br>
+<form action={{id}} method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
+<br>
 
 </p>
 

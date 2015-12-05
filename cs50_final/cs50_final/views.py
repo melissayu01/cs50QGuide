@@ -4,8 +4,9 @@ from search.models import *
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.db.models import Q
+from django.db.models import Q, Avg
 from forms import *
+from decimal import Decimal
 
 def populate_home_page(request):
 	# if not request.user.is_authenticated():
@@ -16,8 +17,9 @@ def populate_home_page(request):
 			name = form.cleaned_data['name']
 			abbreviation = form.cleaned_data['abbreviation']
 			genre = form.cleaned_data['genre']
-			matches = Club.objects.filter( Q(name__icontains=name) | Q(abbreviation__icontains=abbreviation) )
+			matches = Club.objects.filter( Q(name__icontains=name) | Q(abbreviation__icontains=abbreviation))
 			return render(request, 'index.html', {'form': form, 'club_list': matches})
+	# if accessed via get, return blank form 
 	else:
 		form = Search()
 	
@@ -25,23 +27,27 @@ def populate_home_page(request):
 
 def populate_long_club(request, club_id):
 	club_id = int(club_id)
-	try:
-		club = Club.objects.get(pk=club_id)
-		reviews = Review.objects.filter(name_id=club_id)
+	#try:
+	club = Club.objects.get(pk=club_id)
+	reviews = Review.objects.filter(name_id=club_id)
 
-		if request.method == 'POST':
-			form = Rate(request.POST)
-			if form.is_valid():
-				r = Review(review = form.cleaned_data['review'],
-					rating = form.cleaned_data['rating'],)
-				r.save()
-				return render(request, 'long_club.html', {'club': club, 'reviews': reviews, 'form': form})
-		else:
-			form = Rate()
-	except:
-		raise Http404("Club " + str(club_id) + " does not exist.")
+	if request.method == 'POST':
+		form = Rate(request.POST)
+		if form.is_valid():
+			r = Review(name=club,
+				reviewer = request.user,
+				review = form.cleaned_data['review'],
+				rating = form.cleaned_data['rating'])
+			r.save()
+			new_rating = reviews.aggregate(Avg('rating'))
+			Club.objects.filter(pk=club_id).update(overall_rating = new_rating["rating__avg"])
+		return HttpResponseRedirect('/reviewed/')
+	else:
+		form = Rate()
+	# except:
+	# 	raise Http404("Club " + str(club_id) + " does not exist.")
 		
-	return render(request, 'long_club.html', {'club': club, 'reviews': reviews, 'form': form})
+	return render(request, 'long_club.html', {'club': club, 'reviews': reviews, 'form': form, 'id': "/club/" + str(club_id)})
 	
 def populate_logout(request):
 	logout(request)
@@ -94,9 +100,11 @@ def return_static_file(request, fname):
 	except:
 		 raise Http404("File " + os.path.join(os.getcwd(), fname) + " does not exist.")
 					
-	
 def populate_user_created(request):
 	return render(request, 'user_created.html', {})
+
+def populate_review_submitted(request):
+	return render(request, 'review_submitted.html', {})
 
 # def get_new_offer(request):
 #     # if this is a POST request we need to process the form data

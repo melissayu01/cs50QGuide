@@ -21,6 +21,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.populate_home_page),
     url(r'^club/([0-9]+)$', views.populate_long_club),
+    url(r'^reviewed/', views.populate_review_submitted),
     url(r'^register/$', views.get_new_user),
     url(r'^thanks/$', views.populate_user_created),
     url(r'^login/$', views.populate_login),

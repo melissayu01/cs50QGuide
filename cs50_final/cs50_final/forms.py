@@ -51,7 +51,7 @@ class Rate(forms.Form):
     #     model = Club
     #     fields = ['name', 'abbreviation']
     review = forms.CharField(label='Review', max_length=2000, 
-        widget=forms.TextInput(attrs={'placeholder': 'Type comments here.'}))
+        widget=forms.Textarea(attrs={'placeholder': 'Type comments here.'}))
     rating = forms.ChoiceField(label="Club Rating", choices=(('1', '1'),('2', '2'),('3', '3'),('4', '4'),('5','5')))
 
 

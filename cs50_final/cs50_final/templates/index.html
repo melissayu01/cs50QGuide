@@ -6,13 +6,19 @@
 
 {% block content %}
 
-<h1> Melissa can't search for food.</h1>
+<h1> Q-GUIDE: INDEX PAGE! </h1>
 
-  <form action="/" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form }}
-      <input type="submit" value="Submit" />
-  </form>
+	<br><a href="/register/">Register</a>
+	<br><a href="/login/">Login</a>
+	<br><a href="/logout/">Logout</a>
+	<br><br>
+
+
+	<form action="/" method="post" enctype="multipart/form-data">
+	      {% csrf_token %}
+	      {{ form }}
+	      <input type="submit" value="Submit" />
+	</form>
 
   {% for club in club_list %}
 
