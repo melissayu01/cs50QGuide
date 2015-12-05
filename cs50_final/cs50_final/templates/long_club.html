@@ -11,7 +11,7 @@
 <p> 
 Club name: {{ club.name }} ({{ club.abbreviation }}) <br>
 
-Genre: {{ club.genre }} <br>
+Genre: {{ club.genre.all }} <br>
 
 Rating: {{ club.overall_rating }} <br>
 
@@ -21,7 +21,7 @@ Description: {{ club.description }} <br>
 
 <p>
 {% for review in reviews %}
-	Reviews: {{review.reviewer}} <br>
+	Reviewer: {{review.reviewer}} <br>
 	Review: {{review.review}}<br>
 {% endfor %}
 </p>

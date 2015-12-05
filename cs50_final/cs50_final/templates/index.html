@@ -20,6 +20,14 @@
 	      <input type="submit" value="Submit" />
 	</form>
 
+ {% for match in matches %}
+
+    {{match}}
+
+  {% endfor %}
+<br><br><br><br>
+Query: {{query}}
+<br><br><br><br>
   {% for club in club_list %}
 
     {% include "short_club.html" %}
