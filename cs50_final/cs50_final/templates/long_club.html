@@ -20,14 +20,16 @@ Description: {{ club.description }} <br>
 </p>
 
 <h2> {{ club.name }} Reviews </h2>
-<p>
+<aside class="pull-quote">
 {% for review in reviews %}
 	{% if review.review != '' %}
 		<b>{{review.reviewer}} </b> says... <br>
-		{{review.review}}<br><br>
+		<blockquote>
+			<p>{{review.review}}</p>
+		</blockquote>
 	{% endif %}
 {% endfor %}
-</p>
+</aside>
 
 <p>
 <form action="/club/{{club.id}}" method="post" enctype="multipart/form-data">

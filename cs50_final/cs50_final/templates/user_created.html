@@ -1,10 +1,15 @@
-{% extends "base.html" %}
+{% extends "base_account.html" %}
 
 {% block title %} Thanks! {% endblock title %}
 
-{% block content %}
+{% block section %}register{% endblock %}
 
-You have been successfully registered on our site!<br>
-<a href="/login/">Login</a>
+{% block page_title %}Thanks{% endblock %}
 
+{% block rec %} 
+  Thanks for registering on our site! 
+{% endblock %}
+
+{% block form %}
+	<h5><a href="/login/">Login</a></h5>
 {% endblock %}

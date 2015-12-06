@@ -1,9 +1,15 @@
-{% extends "base.html" %}
+{% extends "base_account.html" %}
 
 {% block title %} Thanks! {% endblock title %}
 
-{% block content %}
+{% block section %}register{% endblock %}
 
-Thanks for submitting your review! Click <a href="/">here</a> to go back to the home page.
+{% block page_title %}Thanks{% endblock %}
 
+{% block rec %} 
+  Your review has been received! 
+{% endblock %}
+
+{% block form %}
+	<h5><a href="/">Go back to the home page.</a></h5>
 {% endblock %}
