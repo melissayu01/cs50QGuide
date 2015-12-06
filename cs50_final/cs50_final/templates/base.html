@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{% static 'search/css/base.css' %}">
     <link rel="stylesheet" href="{% static 'search/css/main.css' %}">
     <link rel="stylesheet" href="{% static 'search/css/media-queries.css' %}"> 
+	<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
 
     <!-- Script =================================================== -->
     <script src="{% static 'search/js/modernizr.js' %}"></script>
@@ -23,6 +24,7 @@
     <!-- Favicon =================================================== -->
     <link rel="shortcut icon" href="{% static 'search/images/favicon.ico' %}">
 </head>
+
 <body>
 	<div id="preloader"> 
 		<div id="status">
@@ -69,8 +71,9 @@
 
 	    </div> <!-- /header-inner -->
 
-    </header> 
+    </header>
 
+{% block header %} 
     <section id="page-title">	
    	  
 		<div class="row">
@@ -84,12 +87,9 @@
 		</div> <!-- /row -->	   
 
    </section> <!-- /page-title -->
-
-{% block header %} 
 {% endblock %}
 
 {% block content %}{% endblock %}
-
 
 {% block footer %}
 	<footer>

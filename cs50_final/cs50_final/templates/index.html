@@ -5,17 +5,34 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-<br>
-	<form action="/search/" method="get">
-	      <input type="submit" value="Search for clubs here." />
-	</form>
+<section id="search">
+    <div class="row">
+        <div class="twelve columns"> 
+            <form action="/search/" method="get">
+                <fieldset>
+                    <div class="tab-whole twelve columns">
+                        <button class="submit full-width">Search Clubs</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>  
+</section>
 
-<h1> Club Listing </h1>
-
-  {% for club in club_list %}
-
-    {% include "short_club.html" %}
-
-  {% endfor %}
+<section id="portfolio">
+	<div class="row section-head">
+      	<div class="twelve columns">
+	         <h1>Harvard Clubs Made Easy<span>.</span></h1>
+	         <hr />
+		</div>
+	</div>
+	<div class="row items">
+      	<div class="twelve columns">
+			{% for club in club_list %}
+				{% include "short_club.html" %}
+			{% endfor %}
+		</div>
+    </div>  
+</section>
 
 {% endblock %}

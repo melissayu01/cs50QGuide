@@ -26,7 +26,7 @@ class Genre(models.Model):
 	category = models.IntegerField(choices=CLUB_CATEGORIES)
 	
 	def __str__(self):
-		return "%s [%s]" % (self.category, self.get_category_display())
+		return "%s" % (self.get_category_display())
 
 class Club(models.Model):
 	name = models.CharField(max_length=100, blank=True)

@@ -1,9 +1,15 @@
-{% extends "base.html" %}
+{% extends "base_account.html" %}
+
+{% block section %}register{% endblock %}
 
 {% block title %} Logged out!{% endblock title %}
 
-{% block content %}
+{% block page_title %}Thanks{% endblock %}
 
-Thanks for visiting our site! You have been successfully logged out.<br>
+{% block rec %} 
+	Thanks for visiting our site! You have been successfully logged out.
+{% endblock %}
 
+{% block form %}
+	<h5><a href="/">Go back to the home page.</a></h5>
 {% endblock %}
