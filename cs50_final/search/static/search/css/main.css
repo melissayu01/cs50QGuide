@@ -26,6 +26,7 @@
     q. Blog Entry
     r. Portfolio Entry
     s. Login & Register Sections
+    t. Leave a Comment
 
 /* =================================================================== */
 
@@ -1595,7 +1596,7 @@ hr {
 #about {
 	background: white;
 	padding-top: 40px;
-	padding-bottom: 0;
+	padding-bottom: 40px;
 }
 #about .about-content {
 	max-width: 934px;
@@ -2279,3 +2280,125 @@ hr {
 .placeholder {
 	color: #575859 !important;
 }
+
+/* 
+/*  t. Comment Section, Leave a Comment
+/* =================================================================== */
+#contact {
+	background: white;
+	padding-top: 0;
+	padding-bottom: 102px;
+	overflow: hidden;
+}
+#contact .row {
+	max-width: 784px;
+}
+#contact h1 {
+	color: black;
+}
+
+/* contact form */
+#contact form {
+	margin-top: 0;
+	margin-bottom: 30px;
+}
+#contact label {
+	font: 14px/30px "raleway-heavy", sans-serif;
+	color: black;
+	display: none;
+}
+#contact label span {
+	color: black;
+	display: inline-block;
+}
+#contact input, 
+#contact textarea, 
+#contact select {
+	padding: 18px 20px;
+	margin-bottom: 42px;
+	font-size: 15px;
+	width: 100%;
+	background: #f26522;
+	border: 3px solid #575859;
+}
+#contact textarea {
+	height: 252px;
+}
+#contact input:focus, 
+#contact textarea:focus, 
+#contact select:focus {
+	color: white;
+	border-color: #f26522;
+}
+#contact button.submit {
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	padding: 18px 20px;
+	margin-bottom: 36px;
+	line-height: 24px;
+	display: block;
+	border: 3px solid #f26522;
+	color: #f26522;
+	background: transparent;
+}
+#contact button.submit:hover {
+	color: white;
+	background: #f26522;
+}
+
+/* for ie9 and lower */
+.ie #contact label {
+	display: block;
+}
+.ie #contact input, .ie #contact select {
+	margin-bottom: 6px;
+}
+.ie #contact textarea {
+	margin-bottom: 48px;
+}
+
+/* messages */
+#message-warning, #message-success {
+	display: none;
+	background: black;
+	padding: 24px 24px;
+	margin-bottom: 42px;
+	border-radius: 3px;
+}
+#message-warning {
+	color: #ff6163;
+}
+#message-success {
+	color: #ffd900;
+}
+#message-warning i, #message-success i {
+	margin-right: 10px;
+}
+#image-loader {
+	display: none;
+	text-align: center;
+}
+#image-loader img {
+	height: 44px;
+	width: 44px;
+}
+
+/* Style Placeholder Text */
+::-webkit-input-placeholder {
+	color: #575859;
+}
+:-moz-placeholder {
+	/* Firefox 18- */
+	color: #575859;
+}
+::-moz-placeholder {
+	/* Firefox 19+ */
+	color: #575859;
+}
+:-ms-input-placeholder {
+	color: #575859;
+}
+.placeholder {
+	color: #575859 !important;
+}
+

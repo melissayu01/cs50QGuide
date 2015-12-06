@@ -47,14 +47,24 @@
 			</div>
 		</div>
 	</div>
-	<div class="respond">
-       <h3>Leave a Comment</h3>
-	<form action="search/club/{{club.id}}" method="post" enctype="multipart/form-data">
-	    {% csrf_token %}
-	    {{ form }}
-	    <input type="submit" value="Submit" />
-	</form>
-	<br>
-</section> <!-- /content --> 
+
+	<div class="row section-head">
+   		<div class="twelve columns">
+	     <h1>Leave a Review<span>.</span></h1>
+	     <hr>
+	 	</div>
+	</div>
+</section> <!-- /content -->
+
+<section id="contact">
+	<div class="row">
+		<form action="{{club.id}}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form }}
+			<input type="submit" value="Submit" />
+		</form>
+		<br>
+	</div>
+</section>
 {% endblock %}
 
