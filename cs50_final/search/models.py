@@ -11,6 +11,7 @@ class Genre(models.Model):
 	FINANCE = 6
 	CULTURE = 7
 	DANCE = 8
+	OTHER = 9
 	CLUB_CATEGORIES = (
 		(SCIENCE, 'Science'),
 		(MATH, 'Math'),
@@ -20,6 +21,7 @@ class Genre(models.Model):
 		(FINANCE, 'Finance'),
 		(CULTURE, 'Culture'),
 		(DANCE, 'Dance'),
+		(OTHER, 'Other'),
 	)
 	category = models.IntegerField(choices=CLUB_CATEGORIES)
 	
@@ -27,7 +29,7 @@ class Genre(models.Model):
 		return "%s [%s]" % (self.category, self.get_category_display())
 
 class Club(models.Model):
-	name = models.CharField(max_length=30, blank=True)
+	name = models.CharField(max_length=100, blank=True)
 	abbreviation = models.CharField(max_length=10, blank=True)
 	genre = models.ManyToManyField(Genre)
 	description = models.TextField(max_length=2000)
