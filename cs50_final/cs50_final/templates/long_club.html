@@ -4,11 +4,12 @@
 
 {% block content %}
 
-<h1> {{ club.name }}</h1>
+<h1> {{ club.name }} Info </h1>
 
 <!--This template is the one that should offer the comprehensive description of an offer of food-->
 
 <p> 
+
 Club name: {{ club.name }} ({{ club.abbreviation }}) <br>
 
 Genre: {{ club.genre.all }} <br>
@@ -20,6 +21,7 @@ Description: {{ club.description }} <br>
 </p>
 
 <h2> {{ club.name }} Reviews </h2>
+
 <aside class="pull-quote">
 {% for review in reviews %}
 	{% if review.review != '' %}

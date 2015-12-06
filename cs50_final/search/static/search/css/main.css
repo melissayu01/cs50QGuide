@@ -1162,7 +1162,7 @@ hr {
 /* page title
 ---------------------------------------------------------------------- */
 #page-title {
-	background: #12151b url(../images/title.jpg) no-repeat center center fixed;
+	background: #12151b no-repeat center center fixed;
 	-webkit-background-size: cover !important;
 	-moz-background-size: cover !important;
 	background-size: cover !important;
@@ -2017,7 +2017,7 @@ hr {
 /*  s. Login Section
 /* =================================================================== */
 #login {
-	background: #12151b url(../images/hero.jpg) no-repeat center center fixed;
+	background: #12151b no-repeat center center fixed;
 	-webkit-background-size: cover !important;
 	-moz-background-size: cover !important;
 	background-size: cover !important;
@@ -2150,7 +2150,7 @@ hr {
 /*  s. Register Section
 /* =================================================================== */
 #register {
-	background: #12151b url(../images/hero.jpg) no-repeat center center fixed;
+	background: #12151b no-repeat center center fixed;
 	-webkit-background-size: cover !important;
 	-moz-background-size: cover !important;
 	background-size: cover !important;

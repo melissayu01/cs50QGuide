@@ -5,23 +5,13 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
+<br>
+	<form action="/search/" method="get">
+	      <input type="submit" value="Search for clubs here." />
+	</form>
 
 <h1> Club Listing </h1>
 
-	<form action="/" method="post" enctype="multipart/form-data">
-	      {% csrf_token %}
-	      {{ form }}
-	      <input type="submit" value="Submit" />
-	</form>
-
- {% for match in matches %}
-
-    {{match}}
-
-  {% endfor %}
-<br><br>
-Query: {{query}}
-<br><br>
   {% for club in club_list %}
 
     {% include "short_club.html" %}
