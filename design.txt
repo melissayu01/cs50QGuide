@@ -1,0 +1,18 @@
+The YuGuide: Design
+
+Our project was implemented in Django, a high-level web framework in Python. We chose Django and Python (as opposed to a more familiar language like PHP) because of Django’s built-in functionality, and because we felt Python and Django would be valuable skills to learn for life beyond CS50.
+ 
+Our project makes good use of the MVC-like paradigm provided by Django. Django informally calls its framework the MTV model—models, templates, views—where templates are akin to views and the view is akin to the controller.
+ 
+Our models file (found in the ‘search’ app) contains three explicitly defined models: genre, club, and review.
+- The club model stores data for a variety of information pertinent to clubs—such as name, abbreviation, and description. It is linked to the genre model by a many-to-many relationship, since a genre can have many clubs, and a club can have multiple genres.
+-  The genre model stores each possible genre a club can be in. We subjectively included nine possible genres, but other genres can easily be added and modified in our model.
+- The review model stores data for all the reviews submitted by users of the website and contains information such as the review itself and the numerical rating of the club. It is linked to the club model by a foreign key ‘name’ (since all reviews are all linked to their respective club).
+ 
+Our urls file (found in the project directory) calls a specific function or class (which is defined in our views.py file in the project directory) when a specific url is accessed. When called, this function can do many things, depending on which url is accessed; for example, it can create or populate a form (defined in the forms.py file), authenticate a user, etc. After performing this activity, it then renders the actual html (i.e. the template) that will be displayed to the user.
+ 
+For example: when the “…/register/” url is accessed via GET, urls.py calls the get_new_user function from views.py. This function creates and renders a blank form for the user to populate; when populated and submitted (via POST), the same function then stores that user’s information in the model database—effectively ‘registering’ them, as the url indicates.
+
+For our search function on the website, we used the API from Haystack (http://haystacksearch.org/) and Whoosh. Although we initially created a search function using simple SQL queries, we decided to switch to Haystack to allow for more refined searches handle many user input cases (such as when there are trailing spaces).
+  
+For our front-end, we used a website template provided by styleshout.com. This allows us to use pre-designed css, html, and javascript—thus ensuring that we don’t have to reinvent the wheel.

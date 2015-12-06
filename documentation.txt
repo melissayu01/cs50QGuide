@@ -1,0 +1,18 @@
+The YuGuide: Documentation
+ 
+Summary: The YuGuide is a site similar to the Q-Guide allowing users to review different clubs on Harvard’s campus. It was implemented using Django.
+
+How to access the website:
+1. Navigate to the project root directory (containing the README and requirements files) and execute “pip install -r requirements.txt” to install necessary dependencies. (See link to install pip if not yet installed)
+2. In your terminal, navigate to the directory containing the file ‘manage.py’ and execute “python manage.py runserver” to start the Django development server.
+3. Access the live website at http://127.0.0.1:8000/
+ 
+Brief summary of website usage:
+- When you visit the website for the first time, you should register for an account using the register button at the top of the page.
+- After registering, log in with your newfound account. This will direct you to an index of all the clubs available (so far, this index only contains a sample of all the Harvard clubs).
+- Clicking on any of these club links on the index page will open up a page with more information about the club, including an opportunity to review the organization at the bottom of the page.
+- There also exists a search button with which users can search for clubs by either a keyword in the club name, the club’s abbreviation, or the club genre. Searching in this manner will bring up a table of all the hits for that search query.
+ 
+FAQ:
+Why can’t I search with queries that are not full words?
+So far, our search only works with queries consisting of either a full word contained in the club name (e.g. “developer”), the club abbreviation (e.g. “d4d”), or the club genre (e.g. “science”). We are actively working on implementing a search mechanism that can search with a more elastic query.
