@@ -5,9 +5,18 @@
 </head>
 <body>
 
-{% block header %} <h1>HEADER: YuGuide</h1> {% endblock %}
+{% block header %} 
+	<h1><a href="/">YuGuide</a></h1> 
+	{% if request.user.is_authenticated %}
+		<br><a href="/logout/">Logout</a><br><br>
+	{% else %}
+		<br><a href="/register/">Register</a>
+		<br><a href="/login/">Login</a><br><br>
+	{% endif %}
+{% endblock %}
 
 {% block content %}{% endblock %}
+
 
 {% block footer %}
     <hr>

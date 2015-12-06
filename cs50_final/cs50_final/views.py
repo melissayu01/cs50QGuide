@@ -9,8 +9,6 @@ from forms import *
 from decimal import Decimal
 
 def populate_home_page(request):
-	# if not request.user.is_authenticated():
-	# 	return HttpResponseRedirect('/register/')
 	if request.method == 'POST':
 		form = Search(request.POST)
 		if form.is_valid():
@@ -35,6 +33,8 @@ def populate_home_page(request):
 	return render(request, 'index.html', {'form': form, 'club_list': Club.objects.all()})
 
 def populate_long_club(request, club_id):
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect('/login/')
 	club_id = int(club_id)
 	#try:
 	club = Club.objects.get(pk=club_id)
@@ -56,11 +56,11 @@ def populate_long_club(request, club_id):
 	# except:
 	# 	raise Http404("Club " + str(club_id) + " does not exist.")
 		
-	return render(request, 'long_club.html', {'club': club, 'reviews': reviews, 'form': form, 'id': "/club/" + str(club_id)})
+	return render(request, 'long_club.html', {'club': club, 'reviews': reviews, 'form': form})
 	
 def populate_logout(request):
 	logout(request)
-	return render(request, 'index.html', {})
+	return render(request, 'logged_out.html', {})
 
 def get_new_user(request):
 	# if this is a POST request we need to process the form data

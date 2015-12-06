@@ -6,13 +6,7 @@
 
 {% block content %}
 
-<h1> Q-GUIDE: INDEX PAGE! </h1>
-
-	<br><a href="/register/">Register</a>
-	<br><a href="/login/">Login</a>
-	<br><a href="/logout/">Logout</a>
-	<br><br>
-
+<h1> Club Listing </h1>
 
 	<form action="/" method="post" enctype="multipart/form-data">
 	      {% csrf_token %}
@@ -25,9 +19,9 @@
     {{match}}
 
   {% endfor %}
-<br><br><br><br>
+<br><br>
 Query: {{query}}
-<br><br><br><br>
+<br><br>
   {% for club in club_list %}
 
     {% include "short_club.html" %}
