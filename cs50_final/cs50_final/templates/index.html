@@ -19,15 +19,18 @@
     </div>  
 </section>
 
-<section id="portfolio">
+<section id="about">
 	<div class="row section-head">
       	<div class="twelve columns">
 	         <h1>Harvard Clubs Made Easy<span>.</span></h1>
 	         <hr />
 		</div>
 	</div>
-	<div class="row items">
+	<div class="row">
       	<div class="twelve columns">
+	      	<div class="tab-whole six columns"><h2>Club Name</h2></div>
+            <div class="tab-whole three columns"><h2>Genre</h2></div>
+            <div class="tab-whole three columns"><h2>Overall rating</h2></div>
 			{% for club in club_list %}
 				{% include "short_club.html" %}
 			{% endfor %}

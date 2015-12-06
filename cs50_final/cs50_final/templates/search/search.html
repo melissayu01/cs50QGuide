@@ -10,7 +10,6 @@
                         {% for field in form %}
                         {{ field }} 
                         {% endfor %}
-                        <!-- <input type="text" placeholder="Search for food" onblur="if(this.value == '') { this.value = 'Search food offers here...'; }" onfocus="if (this.value == 'Search food offers here...') { this.value =   ''; }" class="text-search" kl_virtual_keyboard_secure_input="on"> -->
                     </div>
                     <div class="tab-whole three columns">
                         <button class="submit full-width">Search</button>
@@ -22,23 +21,23 @@
 </section>
 
 {% if query %}
-<section id="about">
+<section id="portfolio">
     <div class="row">
         <div class="twelve columns"> 
-            <div class="tab-whole four columns"><h3>Club Name</h3></div>
-            <div class="tab-whole four columns"><h3>Genre</h3></div>
-            <div class="tab-whole four columns"><h3>Overall rating</h3></div>
-        </div>
-        <div class="twelve columns"> 
-        {% for club in page.object_list %}
-                <a href="club/{{club.object.id}}">
-                    <div class="tab-whole four columns"><h5>{{club.object.name}}</h5></div>
-                    <div class="tab-whole four columns"><h5>{{ club.object.genre.all }}</h5></div>
-                    <div class="tab-whole four columns"><h5>{{ club.object.overall_rating }}</h5></div>
-                </a>
-        {% empty %}
-            <h1>No results found.</h1>
-        {% endfor %}
+            <div class="tab-whole six columns"><h2>Club Name</h2></div>
+            <div class="tab-whole three columns"><h2>Genre</h2></div>
+            <div class="tab-whole three columns"><h2>Overall rating</h2></div>
+            {% for club in page.object_list %}
+            <a href="club/{{club.object.id}}">
+                <div class="tab-whole six columns"><strong>{{forloop.counter}}. {{club.object.name}}</strong></div>
+                <div class="tab-whole three columns">{{ club.object.genre.all }}</div>
+                <div class="tab-whole three columns">{{ club.object.overall_rating }}</div>
+            </a>
+            {% empty %}
+                <div class="tab-whole twelve columns">
+                    <h3>No results found.</h3>
+                </div>
+            {% endfor %}
         </div>
 
         {% if page.has_previous or page.has_next %}
@@ -50,8 +49,13 @@
         {% endif %}
     </div>
 </section>
+
 {% else %}
-    <!-- {# Show some example queries to run, maybe query syntax, something else? #} -->
+<section id="portfolio">
+    <div class="row">
+        <h5>Search for clubs by name, genre, or abbreviation! Please use whole words only.</h5>
+    </div>
+</section>
 {% endif %}
 
 {% endblock %}

@@ -1,7 +1,5 @@
-<p> 
 <a href="search/club/{{club.id}}">
-	      <dt><strong>{{club.name}}</strong></dt>
-		      <dd>Genre: {{ club.genre.all }}</dd>
-		      <dd>Overall rating: {{ club.overall_rating }}</dd>
+    <div class="tab-whole six columns"><strong>{{forloop.counter}}. {{club.name}}</strong></div>
+    <div class="tab-whole three columns">{{ club.genre.all }}</div>
+    <div class="tab-whole three columns">{{ club.overall_rating }}</div>
 </a>
-</p>

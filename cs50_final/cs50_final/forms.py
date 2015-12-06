@@ -13,7 +13,7 @@ class NewUser(forms.Form):
     email = forms.EmailField(label='Your e-mail', 
         widget=forms.TextInput(attrs={'placeholder': 'Email'}))
     password = forms.CharField(max_length=32, widget=forms.PasswordInput(render_value=False, attrs={'placeholder': 'Password'}))
-    confirm = forms.CharField(max_length=32, widget=forms.PasswordInput(render_value=False, attrs={'placeholder': 'Confirm'}))
+    confirm = forms.CharField(max_length=32, widget=forms.PasswordInput(render_value=False, attrs={'placeholder': 'Confirm Password'}))
     
 #    def clean_username(self):
 #        if len(User.objects.filter(username=self.cleaned_data.get('username', ''))) == 0:
