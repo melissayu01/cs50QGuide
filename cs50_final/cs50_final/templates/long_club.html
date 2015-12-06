@@ -1,23 +1,28 @@
+<!-- Full Club Description, contains comprehensive info and ratings/reviews -->
+
 {% extends "base.html" %}
 
 {% block title %} {{ club.name }} {% endblock %}
 
 {% block content %}
 <section id="content">
+   	<!-- CLub name heading-->
    	<div class="row section-head">
    		<div class="twelve columns">
 	     <h1>{{ club.name }} {{ club.abbreviation }}<span>.</span></h1>
 	     <hr>
-	 	</div>
+	 	</div> 
 	</div>
+    <!-- Genre, rating, and description -->
 	<div class="row">
 		<div class="twelve columns">
 		<h3>{{ club.genre.all }}</h3>
 		<h3>Overall Rating: {{ club.overall_rating }}</h3>
 		<p>{{ club.description }}</p>
-		</div> <!-- /twelve -->
-	</div> <!-- /row -->      
+		</div>
+	</div>      
 
+	<!-- Reviews heading -->
 	<div class="row section-head">
    		<div class="twelve columns">
 	     <h1>Reviews<span>.</span></h1>
@@ -25,6 +30,7 @@
 	 	</div>
 	</div>
 
+	<!-- Past Reviews -->
 	<div class="row">
 		<div id="main">
 			<div id="comments">
@@ -48,6 +54,7 @@
 		</div>
 	</div>
 
+	<!-- Leave a Review -->
 	<div class="row section-head">
    		<div class="twelve columns">
 	     <h1>Leave a Review<span>.</span></h1>
@@ -56,6 +63,7 @@
 	</div>
 </section> <!-- /content -->
 
+<!-- Review Form -->
 <section id="contact">
 	<div class="row">
 		<form action="{{club.id}}" method="post" enctype="multipart/form-data">

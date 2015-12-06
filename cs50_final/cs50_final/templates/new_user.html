@@ -1,3 +1,5 @@
+<!-- Registration page, extends base_account.html -->
+
 {% extends "base_account.html" %}
 
 {% block title %} Register {% endblock %}
@@ -14,6 +16,7 @@
   <form name="LogIn" id="LogIn" method="post" action="/register/" enctype="multipart/form-data">
     <fieldset>
         {% csrf_token %}
+        <!-- form -->
         <div class="row">
         {% for field in form %}
             <div class="six columns mob-whole">
@@ -25,6 +28,7 @@
         {% endfor %}
         </div>
 
+        <!-- button -->
         <div>
             <button class="submit full-width">Register</button>
         </div>

@@ -1,3 +1,5 @@
+<!-- Search page -->
+
 {% extends 'base.html' %}
 
 {% block content %}
@@ -8,7 +10,7 @@
                 <fieldset>
                     <div class="tab-whole nine columns">
                         {% for field in form %}
-                        {{ field }} 
+                            {{ field }} 
                         {% endfor %}
                     </div>
                     <div class="tab-whole three columns">
@@ -20,9 +22,11 @@
     </div>  
 </section>
 
+<!-- List Search Results -->
 {% if query %}
 <section id="portfolio">
     <div class="row">
+        <!-- Table of Results -->
         <div class="twelve columns"> 
             <div class="tab-whole six columns"><h2>Club Name</h2></div>
             <div class="tab-whole three columns"><h2>Genre</h2></div>
@@ -39,7 +43,7 @@
                 </div>
             {% endfor %}
         </div>
-
+        <!-- Pagination -->
         {% if page.has_previous or page.has_next %}
             <div>
                 {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
@@ -50,6 +54,7 @@
     </div>
 </section>
 
+<!-- Search Instructions -->
 {% else %}
 <section id="portfolio">
     <div class="row">

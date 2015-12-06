@@ -1,3 +1,5 @@
+<!-- Log In page, extends base_account.html -->
+
 {% extends "base_account.html" %}
 
 {% block title %} Log In {% endblock %}
@@ -11,6 +13,7 @@
 {% endblock %}
 
 {% block form %}
+	<!-- LogIn Form -->
 	<form name="LogIn" id="LogIn" method="post" action="/login/">
 	    <fieldset>
 	        {% csrf_token %}
