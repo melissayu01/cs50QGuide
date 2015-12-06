@@ -7,30 +7,31 @@ from django.contrib.auth.models import User
 from django.db.models import Q, Avg
 from forms import *
 from decimal import Decimal
+from haystack.generic_views import SearchView
 
 def populate_home_page(request):
-	if request.method == 'POST':
-		form = Search(request.POST)
-		if form.is_valid():
-			name = form.cleaned_data['name']
-			abbreviation = form.cleaned_data['abbreviation']
-			genre = form.cleaned_data['genre']
-			# failed code below:
-			# query=''
-			# fields = [name, abbreviation]
-			# for field in fields:
-			# 	if field != '':
-			# 		query += ("Q(" + field + "__icontains = " + field + ") | ")
-			# query = query[:-2]
-			matches = Club.objects.filter(abbreviation__exact='')
-			test = matches.filter(Q(name__icontains=name) | Q(abbreviation__icontains=abbreviation))
-			#matches
-			return render(request, 'index.html', {'form': form, 'club_list': test})
-	# if accessed via get, return blank form 
-	else:
-		form = Search()
+	# if request.method == 'POST':
+	# 	form = Search(request.POST)
+	# 	if form.is_valid():
+	# 		name = form.cleaned_data['name']
+	# 		abbreviation = form.cleaned_data['abbreviation']
+	# 		genre = form.cleaned_data['genre']
+	# 		# failed code below:
+	# 		# query=''
+	# 		# fields = [name, abbreviation]
+	# 		# for field in fields:
+	# 		# 	if field != '':
+	# 		# 		query += ("Q(" + field + "__icontains = " + field + ") | ")
+	# 		# query = query[:-2]
+	# 		matches = Club.objects.filter(abbreviation__exact='')
+	# 		test = matches.filter(Q(name__icontains=name) | Q(abbreviation__icontains=abbreviation))
+	# 		#matches
+	# 		return render(request, 'index.html', {'form': form, 'club_list': test})
+	# # if accessed via get, return blank form 
+	# else:
+	# 	form = Search()
 	
-	return render(request, 'index.html', {'form': form, 'club_list': Club.objects.all()})
+	return render(request, 'index.html', {'club_list': Club.objects.all()})
 
 def populate_long_club(request, club_id):
 	if not request.user.is_authenticated():

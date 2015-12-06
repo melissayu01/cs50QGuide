@@ -17,16 +17,19 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import authenticate, login, logout
 from . import views
+from haystack.views import SearchView
+from haystack.forms import SearchForm
 
 urlpatterns = [
-    # url(r'^$', views.populate_home_page),
-    url(r'^club/([0-9]+)$', views.populate_long_club),
+    url(r'^$', views.populate_home_page),
+    url(r'^search/club/([0-9]+)$', views.populate_long_club),
     url(r'^reviewed/', views.populate_review_submitted),
     url(r'^register/$', views.get_new_user),
     url(r'^thanks/$', views.populate_user_created),
     url(r'^login/$', views.populate_login),
     url(r'^logout/$', views.populate_logout),
     url(r'^static/(.*)', views.return_static_file),
-    url(r'^$', include('haystack.urls')),
+    url(r'^search/', SearchView(form_class = SearchForm), name='haystack_search'),
+    # url(r'search/^$', views.CustomSearchView.as_view(), name='search_view'),
     url(r'^admin/', include(admin.site.urls)),
 ]
