@@ -19,7 +19,7 @@ from django.contrib.auth import authenticate, login, logout
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.populate_home_page),
+    # url(r'^$', views.populate_home_page),
     url(r'^club/([0-9]+)$', views.populate_long_club),
     url(r'^reviewed/', views.populate_review_submitted),
     url(r'^register/$', views.get_new_user),
@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^login/$', views.populate_login),
     url(r'^logout/$', views.populate_logout),
     url(r'^static/(.*)', views.return_static_file),
+    url(r'^$', include('haystack.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
