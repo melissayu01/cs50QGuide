@@ -1,8 +1,17 @@
+"""
+Django forms for cs50_final project.
+
+Creates fields for each form used on the website.
+
+Melissa Yu, Phillip Yu
+"""
+
 from django import forms
 from django.forms import ModelForm
 from search.models import *
 from django.core.exceptions import ValidationError
 
+# creates registration form fields
 class NewUser(forms.Form):
     first_name = forms.CharField(label='First Name', max_length=30,
         widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
@@ -15,55 +24,14 @@ class NewUser(forms.Form):
     password = forms.CharField(max_length=32, widget=forms.PasswordInput(render_value=False, attrs={'placeholder': 'Password'}))
     confirm = forms.CharField(max_length=32, widget=forms.PasswordInput(render_value=False, attrs={'placeholder': 'Confirm Password'}))
     
-#    def clean_username(self):
-#        if len(User.objects.filter(username=self.cleaned_data.get('username', ''))) == 0:
-#            return self.cleaned_data.get('username', '')
-#        else:
-#            raise ValidationError("That username already exists.")
-#    
-#    def clean_confirm(self):
-#        return self.cleaned_data['confirm']
-#    
-#    def clean_password(self):
-#        if self.cleaned_data['password'] == clean_confirm(self):
-#            return self.cleaned_data['password']
-#        else:
-#            raise ValidationError('Your passwords do not match.')
-#    
-
+# creates login form fields
 class LogIn(forms.Form):
     username = forms.CharField(label='Username', max_length=30, 
         widget=forms.TextInput(attrs={'placeholder': 'Username'}))
     password = forms.CharField(max_length=32, widget=(forms.PasswordInput(render_value=False, attrs={'placeholder': 'Password'})))
 
-class Search(forms.Form):
-    # class Meta:
-    #     model = Club
-    #     fields = ['name', 'abbreviation']
-    name = forms.CharField(required=False, label='Club Name', max_length=30, 
-        widget=forms.TextInput(attrs={'placeholder': 'Club Name'}))
-    abbreviation = forms.CharField(required=False, label='Club Abbreviation', max_length=10, 
-        widget=forms.TextInput(attrs={'placeholder': 'Club Abbreviation'}))
-    genre = forms.ChoiceField(required=False, label='Club Genre', choices=Genre.CLUB_CATEGORIES)
-
+# creates rating form fields
 class Rate(forms.Form):
-    # class Meta:
-    #     model = Club
-    #     fields = ['name', 'abbreviation']
     review = forms.CharField(label='Review', max_length=2000, required=False,
         widget=forms.Textarea(attrs={'placeholder': 'Type comments here. (optional)'}))
     rating = forms.ChoiceField(label="Club Rating", choices=(('1', '1'),('2', '2'),('3', '3'),('4', '4'),('5','5')))
-
-
-# class Offers(forms.Form):
-#     address = forms.CharField(label='Enter the address at which the food will be served',
-#                             widget = forms.Textarea)
-#     description = forms.CharField(label='What type of food are you offering? Be as descriptive as possible!',
-#                             widget = forms.Textarea)  
-                            
-#     # make sure to default this to a logo of a plate                  
-#     picture = forms.ImageField()
-    
-#     price = forms.DecimalField(min_value = 0, max_value = 999.99, max_digits=5, decimal_places=2)
-#     max_people = forms.IntegerField(min_value = 1, max_value = 100)
-#     offer_datetime = forms.DateTimeField()

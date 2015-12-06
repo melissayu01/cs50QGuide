@@ -1,7 +1,16 @@
+"""
+Django models for cs50_final project.
+
+Creates database models for YuGuide; analogous to "models" aspect
+of MVC paradigm.
+
+Melissa Yu, Phillip Yu
+"""
+
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+# model of each possible genre that a club can belong to
 class Genre(models.Model):
 	SCIENCE = 1
 	MATH = 2
@@ -28,6 +37,7 @@ class Genre(models.Model):
 	def __str__(self):
 		return "%s" % (self.get_category_display())
 
+# model of relevant fields of each club
 class Club(models.Model):
 	name = models.CharField(max_length=100, blank=True)
 	abbreviation = models.CharField(max_length=10, blank=True)
@@ -40,6 +50,7 @@ class Club(models.Model):
 	def __str__(self):
 		return self.name
 
+# model of relevant fields in a club review
 class Review(models.Model):
 	name = models.ForeignKey(Club)
 	reviewer = models.ForeignKey(User)
